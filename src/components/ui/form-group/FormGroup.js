@@ -8,9 +8,11 @@ export default function FormGroup(
         labelClass,
         className,
         prefix,
+        prefixClass,
         disabled,
         tooltip,
         suffix,
+        suffixClass,
         error,
         errorMessage,
         required,
@@ -43,9 +45,9 @@ export default function FormGroup(
                 </label>
             )}
             <div className={`form-element ${elementClass || ''}`} style={elementStyle}>
-                {suffix && <div className="form-suffix">{suffix}</div>}
+                {suffix && <div className={`form-suffix ${suffixClass || ''}`}>{suffix}</div>}
                 {children}
-                {prefix && <div className="form-prefix">{prefix}</div>}
+                {prefix && <div className={`form-prefix ${prefixClass || ''}`}>{prefix}</div>}
             </div>
             {(error && errorMessage) && (
                 <div className="form-error" dangerouslySetInnerHTML={{__html: errorMessage}}/>

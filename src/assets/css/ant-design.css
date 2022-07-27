@@ -373,3 +373,15 @@
 .ant-radio-disabled + span {
     @apply dark:text-white dark:opacity-50
 }
+
+.ant-modal-body {
+    @apply dark:text-white
+}
+
+.ant-tabs-nav-more {
+    @apply dark:text-white text-base
+}
+
+.ant-input-show-count-suffix {
+    @apply dark:text-white
+}

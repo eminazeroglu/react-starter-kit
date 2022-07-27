@@ -38,7 +38,7 @@
 }
 
 .btn--center {
-    @apply justify-center
+    @apply justify-center w-full lg:justify-start lg:w-[initial]
 }
 
 .btn--red {
