@@ -1,6 +1,6 @@
 import {NavLink} from "react-router-dom";
 import {flatten} from "utils/helpers";
-import {routers} from "router/routers";
+import routers from "router/routers";
 import {useAppState} from "stores/module/app.store";
 
 export default function Page({children, count, breadcrumbFirst, title, action}) {

@@ -21,6 +21,7 @@
     "react-dom": "^18.2.0",
     "react-input-mask": "^2.0.4",
     "react-perfect-scrollbar": "^1.5.8",
+    "react-phone-input-2": "^2.15.1",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
@@ -43,11 +44,14 @@
       "no-unused-vars": "error",
       "no-octal-escape": "error",
       "no-extend-native": "off",
+      "no-mixed-operators": "off",
       "no-useless-escape": "off",
+      "no-empty-pattern": "off",
       "jsx-a11y/anchor-has-content": "off",
       "import/no-anonymous-default-export": "off",
       "no-use-before-define": "off",
       "react/jsx-no-target-blank": "off",
+      "array-callback-return": "off",
       "react-hooks/exhaustive-deps": "off"
     }
   },

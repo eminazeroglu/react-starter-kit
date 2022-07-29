@@ -1,7 +1,8 @@
 import stores from 'stores'
 import {notification as AntdNotification} from "antd";
 import Swal from "sweetalert2";
-import {routers} from "router/routers";
+import routers from "router/routers";
+import {generatePath} from "react-router-dom";
 
 export const flatten = arr => {
     return arr ? arr.reduce((result, item) => [
@@ -42,8 +43,7 @@ export const translate = (key = null, params = {}) => {
                 if (search && replace) {
                     if (Array.isArray(search) && Array.isArray(replace)) return this.replaceAll(translates.text, search, replace);
                     else return translates.text.replace(search, replace);
-                }
-                else if (label) return translates.text.replace(':label', this.translate(label).toLowerCase());
+                } else if (label) return translates.text.replace(':label', this.translate(label).toLowerCase());
                 return translates.text;
             }
         }
@@ -120,9 +120,24 @@ export const jsonToFormData = (data) => {
     return formData;
 }
 
-export const route = (name) => {
-    const find = flatten(routers).find(i => i.name === name);
-    return find?.path || '';
+export const route = (name, params = {}) => {
+    let lastRoute, path = '/';
+    name.split('.').map(n => {
+        if (!lastRoute) {
+            lastRoute = routers.find(i => i.name === n);
+            if (lastRoute)
+                path = lastRoute?.path;
+        } else {
+            lastRoute = lastRoute.children.find(i => i.name === n);
+            if (lastRoute)
+                path += '/' + lastRoute?.path;
+        }
+    });
+    if (path) {
+        path = path.replace(/\/\//gi, '/');
+        return Object.values(params).length ? generatePath(path, params) : path;
+    }
+    return '/';
 }
 
 export const currentTimezone = () => {
