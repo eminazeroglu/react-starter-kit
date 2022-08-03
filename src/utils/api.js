@@ -24,7 +24,10 @@ const service = () => {
             if (typeof error.data === 'object' && Array.isArray(Object.keys(error.data))) {
                 appSetErrorService(error.data);
             } else {
-                console.log(error.data);
+                notification({
+                    type: 'error',
+                    message: error.data
+                });
             }
         } else if (error.status === 401) {
             authSetTokenService('');
@@ -49,9 +52,7 @@ const service = () => {
                 message: translate('notification.Delete.Description')
             });
 
-            if (dr === 'yes') {
-                return config;
-            }
+            if (dr === 'yes') return config;
 
             return new Promise(() => {
             });
@@ -82,5 +83,5 @@ const service = () => {
 }
 
 export const api = (method, url, params = {}) => {
-    return service()[method](`${process.env.REACT_APP_API_URL+url}`, params);
+    return service()[method](url, params);
 }
