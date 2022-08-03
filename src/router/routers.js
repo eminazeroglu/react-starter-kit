@@ -43,7 +43,7 @@ const routers = [
         element: <AuthLayout/>,
         children: [
             {
-                name: 'auth.login',
+                name: 'login',
                 index: true,
                 path: 'login',
                 permission: 'accept',

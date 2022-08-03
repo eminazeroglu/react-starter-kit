@@ -121,21 +121,24 @@ export const jsonToFormData = (data) => {
 }
 
 export const route = (name, params = {}) => {
-    let lastRoute, path = '/';
-    name.split('.').map(n => {
-        if (!lastRoute) {
-            lastRoute = routers.find(i => i.name === n);
-            if (lastRoute)
-                path = lastRoute?.path;
-        } else {
-            lastRoute = lastRoute.children.find(i => i.name === n);
-            if (lastRoute)
-                path += '/' + lastRoute?.path;
+    let lastRoute, path = '';
+    if (name) {
+        name.split('.').map(n => {
+            if (!lastRoute) {
+                lastRoute = routers.find(i => i.name === n);
+                if (lastRoute)
+                    path = lastRoute?.path;
+            } else {
+                lastRoute = lastRoute.children.find(i => i.name === n);
+                if (lastRoute && lastRoute?.path) {
+                    path += '/' + lastRoute?.path;
+                }
+            }
+        });
+        if (path) {
+            path = path.replace(/\/\//gi, '/');
+            return Object.values(params).length ? generatePath(path, params) : path;
         }
-    });
-    if (path) {
-        path = path.replace(/\/\//gi, '/');
-        return Object.values(params).length ? generatePath(path, params) : path;
     }
     return '/';
 }

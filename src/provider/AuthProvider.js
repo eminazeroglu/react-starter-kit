@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useAuthState} from "stores/module/auth.store";
-import {Navigate, useNavigate} from "react-router-dom";
-import {route} from "utils/helpers";
+import {Navigate} from "react-router-dom";
 
 function AuthProvider({children}) {
     const {token} = useAuthState();
